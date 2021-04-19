@@ -1,3 +1,5 @@
+import Utilities.setDifficulty
+
 import scala.io.StdIn.readLine
 
 object Hangman extends App {
@@ -5,10 +7,10 @@ println("Welcome to the word guessing game - Hangman. " +
   "You have 10 guesses. " +
   "Good luck!")
 
-
-
   val file_path = if (args.isEmpty) "./src/Resources/englishWords.txt" else args(0)
-  var guessWords = Utilities.englishWords(file_path)
+  var guessWords = Utilities.englishWords(file_path, setDifficulty())
+
+  //guessWords.foreach(println)
 
   //TODO maybe put them in a class?
   val letters: Set[Char] = Utilities.alphaSet

@@ -1,16 +1,30 @@
+import scala.io.StdIn.readLine
+
 object Utilities extends App {
 
   // got the words here: http://www.gwicks.net/dictionaries.htm (UK English)
-  def englishWords(file: String = "./src/Resources/englishWords.txt") : List[String] = {
+  def englishWords(file: String, diff : Int) : List[String] = {
     val source = io.Source.fromFile(file)
     val words: List[String] = source.getLines.toList
     source.close()
-    words
+    if (diff == 0) {
+      words.collect { case word if word.length >3 && word.length <7 && word.matches("^[a-zA-Z]+$") => word }
+    } else if (diff == 1) {
+      words.collect { case word if word.length >6 && word.length <11 && word.matches("^[a-zA-Z]+$") => word }
+    }
+    else {
+      words.collect { case word if word.length >10 && word.matches("^[a-zA-Z]+$") => word }
+    }
+  }
+
+  def setDifficulty() : Int = {
+    val difficulty : String = readLine("Enter - 0 for short word, 1 for medium length word, 2 for long word ")
+    difficulty.toInt
   }
 
   // Return a random word
   def randomWord(words : List[String]) : String = {
-    words( scala.util.Random.nextInt(words.length) )
+    words(scala.util.Random.nextInt(words.length) )
   }
 
   // Split a word into separate letters
