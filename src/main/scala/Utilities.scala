@@ -18,7 +18,7 @@ object Utilities extends App {
   }
 
   def setDifficulty() : Int = {
-    val difficulty : String = readLine("Enter - 0 for short word, 1 for medium length word, 2 for long word ")
+    val difficulty : String = readLine("Enter - 0 for short word, 1 for medium length word, 2 for long word. Good luck! ")
     difficulty.toInt
   }
 

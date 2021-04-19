@@ -3,12 +3,11 @@ import Utilities.setDifficulty
 import scala.io.StdIn.readLine
 
 object Hangman extends App {
-println("Welcome to the word guessing game - Hangman. " +
-  "You have 10 guesses. " +
-  "Good luck!")
 
-  val file_path = if (args.isEmpty) "./src/Resources/englishWords.txt" else args(0)
-  var guessWords = Utilities.englishWords(file_path, setDifficulty())
+println("Welcome to the word guessing game - Hangman. You have 10 guesses.")
+
+  val file = if (args.isEmpty) "./src/Resources/englishWords.txt" else args(0)
+  var guessWords = Utilities.englishWords(file, setDifficulty())
 
   //guessWords.foreach(println)
 
@@ -22,7 +21,8 @@ println("Welcome to the word guessing game - Hangman. " +
   var loss = 0
 
   while (!endGame){
-    readLine("Type 'Exit' to leave the game, 'New' for a new game!")
+
+    println("Type 'Exit' to leave the game, 'New' for a new game!")
 
     val guessingWord = Utilities.randomWord(guessWords)
     guessWords = guessWords.filterNot(_ == guessingWord)
@@ -32,10 +32,10 @@ println("Welcome to the word guessing game - Hangman. " +
     var guessCount = 10
 
     var newGame = false
-    while (!newGame && !endGame){
+    while (!newGame && !endGame) {
       def checkGuesses(): Unit = {
 
-        def printResult(message : String): Unit = {
+        def printResult(message: String): Unit = {
           println("\t" + Utilities.wordJoin(splitWord) + "\n")
           println(summary.format(message, win, loss)) //https://docs.scala-lang.org/overviews/core/string-interpolation.html
           //https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Formatter.html#detail
