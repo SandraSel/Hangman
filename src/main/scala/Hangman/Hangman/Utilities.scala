@@ -1,8 +1,9 @@
-package Hangman.Hangman
+package Hangman
 
 import scala.io.StdIn.readLine
+import Hangman.state
 
-object Utilities extends App {
+object Utilities {
 
   // got the words here: http://www.gwicks.net/dictionaries.htm (UK English)
   def englishWords(file: String, diff: Int): List[String] = {
@@ -48,4 +49,30 @@ object Utilities extends App {
   def applyGuess(letter: Char, guesslist: List[Char], hanglist: List[Char]): List[Char] = {
     guesslist.zip(hanglist).map({ case (a, b) => if (letter == b) b else a })
   }
+
+  def printResult(message: String): Unit = {
+    println("\t" + wordJoin(state.splitWord) + "\n")
+    println(state.summary.format(message, state.wins, state.losses)) //https://docs.scala-lang.org/overviews/core/string-interpolation.html
+    //https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Formatter.html#detail
+    //https://alvinalexander.com/scala/scala-string-formatting-java-string-format-method/
+  }
+
+  def checkGuesses(): Unit = {
+    // if the player guesses the word correctly then if versions, else looses a move
+    if (state.splitWord == state.wordUnderscoreGuess) {
+      state.newGame = true
+      state.wins += 1
+      Utilities.printResult("Congratulations! You won!")
+    } else {
+      state.guessCount match {
+        case 1 =>
+          DrawHangman.drawHangman(10)
+          state.newGame = true
+          state.losses += 1
+          Utilities.printResult("Sorry, but try again! ;)")
+        case _ => state.guessCount -= 1
+      }
+    }
+  }
+
 }

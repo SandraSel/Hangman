@@ -1,4 +1,4 @@
-package Hangman.Hangman
+package Hangman
 
 object DrawHangman extends App {
 
@@ -127,5 +127,5 @@ object DrawHangman extends App {
     )
     figIllustration("fig" + figNr).foreach(println)
   }
-  drawHangman(10)
+  //drawHangman(10)
 }

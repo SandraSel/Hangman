@@ -1,4 +1,4 @@
-package Hangman.Hangman
+package Hangman
 
 case class GameState(letterSet: Set[Char] = Utilities.alphaSet,
                      formattedPlayerInput: String = "\t%s [Guesses left: %2d ] Letter: ",
@@ -16,5 +16,11 @@ case class GameState(letterSet: Set[Char] = Utilities.alphaSet,
   var losses: Int = loss
   var guessSet: Set[Char] = setOfGuesses
   var guessCount: Int = guesses
+  var playersInput : String = ""
+  var splitWord : List[Char] = List()
+  var wordUnderscoreGuess : List[Char] = List()
+  var guessingWord : String = ""
+  var newGame = false
+  var letter: List[Char] = List()
 
 }
