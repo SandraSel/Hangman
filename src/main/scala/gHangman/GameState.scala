@@ -37,7 +37,7 @@ case class GameState(letterSet: Set[Char] = Utilities.alphaSet,
   var splitWord: List[Char] = splitLetters
   var wordUnderscoreGuess: List[Char] = wordUnderscore
   var guessingWord: String = guessWord
-  var newGame = newWord
+  var newGame: Boolean = newWord
   var letter: List[Char] = letterList
 
 }
