@@ -1,6 +1,9 @@
-package Hangman
+package Hangman.Hangman
 
-object DrawHangman extends App {
+/** TODO Iveta lūdzu papildini
+ *
+ */
+object DrawHangman {
 
   def drawHangman(figNr: Int): Unit = {
     val figIllustration: Map[String, Array[String]] = Map(

@@ -1,5 +1,16 @@
-package Hangman
+package Hangman.Hangman
 
+/** Hangman game parameters used in the main game logic [[Hangman]]
+ *
+ * @param letterSet letters to guess
+ * @param formattedPlayerInput formatted message displayed for players input
+ * @param sum formatted summary message of the players score
+ * @param endGame ending of the game
+ * @param win wins of the player
+ * @param loss losses of the player
+ * @param setOfGuesses set of players guesses
+ * @param guesses allowed guesses for the word
+ */
 case class GameState(letterSet: Set[Char] = Utilities.alphaSet,
                      formattedPlayerInput: String = "\t%s [Guesses left: %2d ] Letter: ",
                      sum: String = "%s Wins: %2d  Losses: %2d",

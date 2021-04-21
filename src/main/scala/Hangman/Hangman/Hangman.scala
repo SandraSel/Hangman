@@ -1,14 +1,23 @@
-package Hangman
+/** Package for a name guessing game Hangman.
+ * https://en.wikipedia.org/wiki/Hangman_(game)
+ *
+ * @author Iveta Kalva and Sandra Selicka
+ * Case class implemented in this package is [[Hangman.Hangman.GameState]].
+ */
+package Hangman.Hangman
 
 import scala.io.StdIn.readLine
 
+/** Hangman game logic
+ *
+ * Checks the players input against a randomly selected word based on
+ *    the players chosen difficulty level
+ */
 object Hangman extends App {
-
   println("Welcome to the word guessing game - Hangman. You have 10 guesses.")
 
   val file = if (args.isEmpty) "./src/Resources/englishWords.txt" else args(0)
   var guessWords = Utilities.englishWords(file, Utilities.setDifficulty())
-
   var state = GameState()
 
   while (!state.end) {
