@@ -1,34 +1,35 @@
 /** Package for a name guessing game Hangman.
  * https://en.wikipedia.org/wiki/Hangman_(game)
  *
- * @author Iveta Kalva and Sandra Selicka
- * Case class implemented in this package is [[Hangman.Hangman.GameState]].
+ * @author Sandra Selicka and Iveta Kalva
+ *         Case class implemented in this package is [[gHangman.GameState]].
  */
-package Hangman.Hangman
+package gHangman
 
 import scala.io.StdIn.readLine
 
 /** Hangman game logic
  *
  * Checks the players input against a randomly selected word based on
- *    the players chosen difficulty level
+ *    the players chosen word length
  */
 object Hangman extends App {
   println("Welcome to the word guessing game - Hangman. You have 10 guesses.")
 
   val file = if (args.isEmpty) "./src/Resources/englishWords.txt" else args(0)
-  var guessWords = Utilities.englishWords(file, Utilities.setDifficulty())
+  var guessWords = Utilities.englishWords(file, Utilities.setWordLength())
   var state = GameState()
 
   while (!state.end) {
 
-    println("*********************************************************")
+    println("********************************************************")
     println("Guess the word or type 'Exit' to leave the game!")
 
     state.guessingWord = Utilities.randomWord(guessWords)
     guessWords = guessWords.filterNot(_ == state.guessingWord)
     state.splitWord = Utilities.wordSplit(state.guessingWord.toUpperCase)
     state.wordUnderscoreGuess = Utilities.wordSplit("_" * state.guessingWord.length)
+    Utilities.resetGameState()
 
     while (!state.newGame && !state.end) {
 

@@ -1,4 +1,4 @@
-package Hangman.Hangman
+package gHangman
 
 /** Hangman game parameters used in the main game logic [[Hangman]]
  *
@@ -18,7 +18,13 @@ case class GameState(letterSet: Set[Char] = Utilities.alphaSet,
                      var win: Int = 0,
                      var loss: Int = 0,
                      setOfGuesses: Set[Char] = Set(),
-                     guesses: Int = 10) {
+                     guesses: Int = 10,
+                     var playerInput : String = "",
+                     var splitLetters : List[Char] = List(),
+                     var wordUnderscore : List[Char] = List(),
+                     var guessWord : String = "",
+                     var newWord: Boolean = false,
+                     var letterList: List[Char] = List()) {
   val letters: Set[Char] =letterSet
   val formattedInput: String = formattedPlayerInput
   val summary: String = sum
@@ -27,11 +33,11 @@ case class GameState(letterSet: Set[Char] = Utilities.alphaSet,
   var losses: Int = loss
   var guessSet: Set[Char] = setOfGuesses
   var guessCount: Int = guesses
-  var playersInput : String = ""
-  var splitWord : List[Char] = List()
-  var wordUnderscoreGuess : List[Char] = List()
-  var guessingWord : String = ""
-  var newGame = false
-  var letter: List[Char] = List()
+  var playersInput : String = playerInput
+  var splitWord : List[Char] = splitLetters
+  var wordUnderscoreGuess : List[Char] = wordUnderscore
+  var guessingWord : String = guessWord
+  var newGame = newWord
+  var letter: List[Char] = letterList
 
 }

@@ -1,4 +1,4 @@
-package Hangman.Hangman
+package gHangman
 
 import scala.io.StdIn.readLine
 import Hangman.state
@@ -12,8 +12,8 @@ object Utilities {
    *
    * @param file used to retrieve words for the word guessing game
    * file retrieved from http://www.gwicks.net/dictionaries.htm (UK English)
-   * @param diff TODO Iveta lūdzu palidini
-   * @return word lists to be guessed by player that is filtered by the difficulty level
+   * @param diff determines the lengths of the words in the returned word list
+   * @return word lists to be guessed by player that is filtered by the word length
    *         also chosen by the player
    */
 
@@ -31,13 +31,12 @@ object Utilities {
     }
   }
 
-  /** TODO Iveta lūdzu papildini
+  /** Set the length of the guess word by letters count
    *
-   * @return
+   * @return a word chosen by the player based on preferred word length
    */
-  def setDifficulty(): Int = {
-    val difficulty: String = readLine("Enter - 1 for short word, 2 for medium length word, 3 for long word. Good luck! ")
-    difficulty.toInt
+  def setWordLength(): Int = {
+    readLine("Enter - 1 for short word, 2 for medium length word, 3 for long word. Good luck! ").toInt
   }
 
   /** Generates a random word from a list of words
@@ -64,7 +63,7 @@ object Utilities {
    * @param wordlist a word whose letters are separated into a list
    * @return word whose separated letters have been joined again into a string by a space
    */
-    def wordJoin(wordlist: List[Char]): String = {
+  def wordJoin(wordlist: List[Char]): String = {
     wordlist.mkString(" ")
   }
 
@@ -76,12 +75,21 @@ object Utilities {
     ('A' to 'Z').toSet
   }
 
+  /**Method to reset the game
+   *
+   */
+  def resetGameState():Unit = {
+    state.guessCount = 10
+    state.guessSet = Set()
+    state.newGame = false
+  }
+
   /** Generate a new guess list based on letter, current matches and actual word
    *
-   * @param letter
-   * @param guesslist
-   * @param hanglist
-   * @return
+   * @param letter letters that have been guessed
+   * @param guesslist shows the word in underscore containing matched letters
+   * @param hanglist the actual guessed word
+   * @return a split word in underscores or with guessed letters
    */
   def applyGuess(letter: Char, guesslist: List[Char], hanglist: List[Char]): List[Char] = {
     guesslist.zip(hanglist).map({ case (a, b) => if (letter == b) b else a })
@@ -104,17 +112,16 @@ object Utilities {
     if (state.splitWord == state.wordUnderscoreGuess) {
       state.newGame = true
       state.wins += 1
-      Utilities.printResult("Congratulations! You won!")
+      printResult("Congratulations! You won!")
     } else {
       state.guessCount match {
         case 1 =>
           DrawHangman.drawHangman(10)
           state.newGame = true
           state.losses += 1
-          Utilities.printResult("Sorry, but try again! ;)")
+          printResult("Sorry, but try again! ;)")
         case _ => state.guessCount -= 1
       }
     }
   }
-
 }

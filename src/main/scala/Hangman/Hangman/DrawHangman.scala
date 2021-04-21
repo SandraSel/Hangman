@@ -1,10 +1,13 @@
-package Hangman.Hangman
+package gHangman
 
-/** TODO Iveta lūdzu papildini
+/** DrawHangman object holding method for [[Hangman]]
  *
  */
 object DrawHangman {
-
+  /** Draws the sketch that based on the user guesses situation
+   *
+   * @param figNr points to the suitable array in the map
+   */
   def drawHangman(figNr: Int): Unit = {
     val figIllustration: Map[String, Array[String]] = Map(
       "fig10" -> Array( "|---------|",
