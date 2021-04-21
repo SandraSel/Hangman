@@ -1,9 +1,3 @@
-/** Package for a name guessing game Hangman.
- * https://en.wikipedia.org/wiki/Hangman_(game)
- *
- * @author Sandra Selicka and Iveta Kalva
- *         Case class implemented in this package is [[gHangman.GameState]].
- */
 package gHangman
 
 import scala.io.StdIn.readLine
@@ -11,7 +5,7 @@ import scala.io.StdIn.readLine
 /** Hangman game logic
  *
  * Checks the players input against a randomly selected word based on
- *    the players chosen word length
+ * the players chosen word length
  */
 object Hangman extends App {
   println("Welcome to the word guessing game - Hangman. You have 10 guesses.")
@@ -33,7 +27,7 @@ object Hangman extends App {
 
     while (!state.newGame && !state.end) {
 
-      DrawHangman.drawHangman(10-state.guessCount)
+      DrawHangman.drawHangman(10 - state.guessCount)
 
       state.playersInput = readLine(state.formattedInput.format(Utilities.wordJoin(state.wordUnderscoreGuess), state.guessCount)).toUpperCase
       state.playersInput match {

@@ -1,7 +1,8 @@
 package gHangman
 
+import gHangman.Hangman.state
+
 import scala.io.StdIn.readLine
-import Hangman.state
 
 /** Utilities object holding methods for [[Hangman]]
  *
@@ -11,7 +12,7 @@ object Utilities {
   /** Retrieves guessable words from an added file
    *
    * @param file used to retrieve words for the word guessing game
-   * file retrieved from http://www.gwicks.net/dictionaries.htm (UK English)
+   *             file retrieved from http://www.gwicks.net/dictionaries.htm (UK English)
    * @param diff determines the lengths of the words in the returned word list
    * @return word lists to be guessed by player that is filtered by the word length
    *         also chosen by the player
@@ -75,10 +76,10 @@ object Utilities {
     ('A' to 'Z').toSet
   }
 
-  /**Method to reset the game
+  /** Method to reset the game
    *
    */
-  def resetGameState():Unit = {
+  def resetGameState(): Unit = {
     state.guessCount = 10
     state.guessSet = Set()
     state.newGame = false
@@ -86,9 +87,9 @@ object Utilities {
 
   /** Generate a new guess list based on letter, current matches and actual word
    *
-   * @param letter letters that have been guessed
+   * @param letter    letters that have been guessed
    * @param guesslist shows the word in underscore containing matched letters
-   * @param hanglist the actual guessed word
+   * @param hanglist  the actual guessed word
    * @return a split word in underscores or with guessed letters
    */
   def applyGuess(letter: Char, guesslist: List[Char], hanglist: List[Char]): List[Char] = {
