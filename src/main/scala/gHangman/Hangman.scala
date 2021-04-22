@@ -3,7 +3,8 @@
  * https://en.wikipedia.org/wiki/Hangman_(game)
  *
  * @author Sandra Selicka and Iveta Kalva
- *         Case class implemented in this package is [[gHangman.GameState]].
+ * Case class implemented in this package is [[gHangman.GameState]].
+ * @version 1.0
  */
 package gHangman
 
