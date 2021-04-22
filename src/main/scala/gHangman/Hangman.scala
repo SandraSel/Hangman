@@ -1,3 +1,10 @@
+
+/** Package for a name guessing game Hangman.
+ * https://en.wikipedia.org/wiki/Hangman_(game)
+ *
+ * @author Sandra Selicka and Iveta Kalva
+ *         Case class implemented in this package is [[gHangman.GameState]].
+ */
 package gHangman
 
 import scala.io.StdIn.readLine
